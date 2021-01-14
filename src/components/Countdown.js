@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
-import daysInYear from './helpers/daysInYear'
-import CountdownBox from './CountdownBox'
+import daysInYear from '../helpers/daysInYear'
+import CountdownBox from '../CountdownBox'
 
 let interval
 

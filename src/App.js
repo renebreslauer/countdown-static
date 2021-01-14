@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
 import {
@@ -103,6 +104,7 @@ class App extends React.Component {
             Welcome to React Router Protection Sample
           </h1>
         </header>
+        <Nav />
         <Hero />
         <Footer />
         <BrowserRouter>
