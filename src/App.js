@@ -1,129 +1,29 @@
 import React, { Component } from 'react'
 import Nav from './components/Nav'
-import Hero from './components/Hero'
+import LoginPage from './pages/LoginPage'
+import Home from './pages/Home'
 import Footer from './components/Footer'
-import {
-  BrowserRouter,
-  Route,
-  Link,
-  Redirect,
-  withRouter,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import './App.scss'
-
-const fakeAuthCentralState = {
-  isAuthenticated: false,
-  authenticate(callback) {
-    this.isAuthenticated = true
-    setTimeout(callback, 300)
-  },
-  signout(callback) {
-    this.isAuthenticated = false
-    setTimeout(callback, 300)
-  },
-}
-
-const Public = () => <h3>Public Content</h3>
-const Protected = () => <h3>Protected Content</h3>
-
-class Login extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      redirectToReferrer: false,
-    }
-  }
-
-  login = () => {
-    fakeAuthCentralState.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true,
-      }))
-    })
-  }
-
-  render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer } = this.state
-
-    if (redirectToReferrer === true) {
-      this.props.history.push(from.pathname)
-    }
-
-    return (
-      <div>
-        <p>Please, you need to be authenticated to to view this content</p>
-        <button onClick={this.login}>Log in</button>
-      </div>
-    )
-  }
-}
-
-const ProtectedRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      fakeAuthCentralState.isAuthenticated === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location },
-          }}
-        />
-      )
-    }
-  />
-)
-
-const AuthButton = withRouter(({ history }) =>
-  fakeAuthCentralState.isAuthenticated ? (
-    <p>
-      Welcome to this amazing content!{' '}
-      <button
-        onClick={() => {
-          fakeAuthCentralState.signout(() => history.push('/'))
-        }}
-      >
-        Sign out
-      </button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  )
-)
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">
-            Welcome to React Router Protection Sample
-          </h1>
-        </header>
-        <Nav />
-        <Hero />
-        <Footer />
-        <BrowserRouter>
-          <div>
-            <AuthButton />
-            <ul>
-              <li>
-                <Link to="/public">Public Content</Link>
-              </li>
-              <li>
-                <Link to="/protected">Protected Content</Link>
-              </li>
-            </ul>
-            <Route path="/public" component={Public} />
-            <Route path="/login" component={withRouter(Login)} />
-            <ProtectedRoute path="/protected" component={Protected} />
-          </div>
-        </BrowserRouter>
-      </div>
+      <>
+        <Router>
+          <Nav />
+          <Switch>
+            <Route path="/LoginPage">
+              <LoginPage />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+          </Switch>
+          <Footer />
+        </Router>
+      </>
     )
   }
 }

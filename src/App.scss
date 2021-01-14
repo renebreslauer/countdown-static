@@ -7,18 +7,49 @@ h3,
 h4,
 h5,
 h6,
-p {
+p,
+a {
   font-family: $bodyFont;
   color: #4c4c47;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
   background: #7ebdc2;
 }
+
+//nav
+.nav-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 40px 0px;
+  box-shadow: 0px 0px 41px -9px rgba(0, 0, 0, 0.51);
+  -webkit-box-shadow: 0px 0px 41px -9px rgba(0, 0, 0, 0.51);
+  -moz-box-shadow: 0px 0px 41px -9px rgba(0, 0, 0, 0.51);
+  .nav {
+    margin: 0 5vw;
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    a {
+      &:first-child {
+        font-size: 2vw;
+        font-weight: 600;
+        color: #bb4430;
+      }
+    }
+  }
+}
+
 //hero
 .hero-wrapper {
   width: 100%;
-  height: 90vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +91,7 @@ body {
   }
   h2 {
     text-align: center;
+    text-transform: uppercase;
   }
   .countdown-item-wrapper {
     display: grid;
