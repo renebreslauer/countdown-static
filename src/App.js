@@ -1,14 +1,9 @@
 import React from 'react'
-import Countdown from './countdown'
-import './App.css'
+import Hero from './components/Hero'
+import './App.scss'
 
 function App() {
-  return (
-    <Countdown
-      timeTillDate="01 18 2021, 10:00 am"
-      timeFormat="MM DD YYYY, h:mm a"
-    />
-  )
+  return <Hero />
 }
 
 export default App
