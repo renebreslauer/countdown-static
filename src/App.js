@@ -1,9 +1,15 @@
 import React from 'react'
 import Hero from './components/Hero'
+import Footer from './components/Footer'
 import './App.scss'
 
 function App() {
-  return <Hero />
+  return (
+    <>
+      <Hero />
+      <Footer />
+    </>
+  )
 }
 
 export default App

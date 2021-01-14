@@ -86,14 +86,17 @@ const Countdown = ({ date }) => {
   return (
     <Fragment>
       <div className="countdown">
-        <CountdownBox
-          left={timeLeft.days}
-          divideBy={daysInSelectedYear}
-          label="days"
-        />
-        <CountdownBox left={timeLeft.hours} divideBy={24} label="hours" />
-        <CountdownBox left={timeLeft.minutes} divideBy={60} label="minutes" />
-        <CountdownBox left={timeLeft.seconds} divideBy={60} label="seconds" />
+        <h2>Your Workout Begins In</h2>
+        <div class="countdown-item-wrapper">
+          <CountdownBox
+            left={timeLeft.days}
+            divideBy={daysInSelectedYear}
+            label="days"
+          />
+          <CountdownBox left={timeLeft.hours} divideBy={24} label="hours" />
+          <CountdownBox left={timeLeft.minutes} divideBy={60} label="minutes" />
+          <CountdownBox left={timeLeft.seconds} divideBy={60} label="seconds" />
+        </div>
       </div>
     </Fragment>
   )
